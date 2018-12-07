@@ -15,8 +15,43 @@ class Main extends Model {
 		$this->db->query('UPDATE user SET name = :name, mail = :mail, task = :task, picture = :picture WHERE id = :id', $params);
 	}
 
-	public function addData($params) {
-		$this->db->query('INSERT INTO user (name, mail, task, picture) VALUES (:name, :mail, :task, :picture)', $params);
+	public function importData($films, $formats = [], $actors = []) {
+		try {
+			$this->db->beginTransaction();
+
+			foreach($formats as $value) {
+				$format['format'] = $value;
+				$this->db->query('INSERT INTO formats (format)
+									VALUES (:format)', $format);
+			}
+
+			foreach($actors as $actor) {
+				$actor = explode(' ', $actor);
+				$actor['first_name'] = $actor[0];
+				$actor['last_name'] = $actor[1];
+				if(isset($actor[2])) {
+					$actor['first_name'] .= ' '.$actor[2];
+					$actor = array_slice($actor, 3);
+				} else {
+					$actor = array_slice($actor, 2);
+				}
+				$this->db-query('INSERT INTO actors (first_name, last_name)
+									VALUES (:first_name, :last_name)', $actor);
+			}
+			
+			
+			foreach($films as $film) {
+				$this->db->query('INSERT INTO formats (format) 
+									VALUES (:format)', $film);
+				$this->db->query('INSERT INTO films (title, year, format_id) 
+									VALUES (:title, :year, :'.$this->db->lastInsertId().')', $film);
+			}
+
+			$this->db->commit();
+		} catch(Exception $e) {
+			$this->db->rollBack();
+			echo $e->getMessage();
+		}
 	}
 }
 

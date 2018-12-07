@@ -9,3 +9,9 @@ function debug($str) {
 	echo '</pre>';
 	exit;
 }
+
+function debug_light($str) {
+	echo '<pre>';
+	var_dump($str);
+	echo '</pre>';
+}

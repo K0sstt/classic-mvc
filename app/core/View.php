@@ -13,8 +13,9 @@ class View {
 		$this->path = $route['controller'].'/'.$route['action'];
 	}
 
-	public function render($title, $vars = []) {
-		extract($vars);
+	public function render($vars = [], $explode = true) {
+		if($explode) extract($vars);
+		
 		$path = 'app/views/'.$this->path.'.php';
 		if (file_exists($path)) {
 			ob_start();

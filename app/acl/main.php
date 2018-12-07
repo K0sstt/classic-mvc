@@ -3,8 +3,7 @@
 return [
 	'all' => [
 		'index',
-		'updateData',
-		'addData',
+		'import',
 	],
 ];
 
