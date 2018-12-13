@@ -15,7 +15,7 @@ class MainController extends Controller {
 		$vars = [
 			'data' => $result,
 		];
-		$this->view->render($vars); 
+		$this->view->render(); 
 	}
 
 	public function importAction(){
@@ -56,9 +56,10 @@ class MainController extends Controller {
 		}
 		fclose($file);
 
-		debug($this->formats);
-		debug_light($this->actors);
-		// $this->model->importData($this->films< $this->formats, $this->actors);
+		// debug($this->films);
+		// debug_light($this->formats);
+		// debug_light($this->actors);
+		$this->model->importData($this->films, $this->formats, $this->actors);
 
 		$this->view->render($this->films, false);
 	}

@@ -3,6 +3,7 @@
 namespace app\core;
 
 use app\lib\Db;
+use PDO;
 
 abstract class Model {
 
@@ -11,6 +12,8 @@ abstract class Model {
 	public function __construct() {
 		$this->db = new Db;
 	}
+
+
 }
 
 ?>

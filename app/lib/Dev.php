@@ -15,3 +15,14 @@ function debug_light($str) {
 	var_dump($str);
 	echo '</pre>';
 }
+
+
+function in_array_multi($needle, $haystack, $strict = false) {
+    foreach ($haystack as $item) {
+        if (($strict ? $item === $needle : $item == $needle) || (is_array($item) && in_array_multi($needle, $item, $strict))) {
+            return true;
+        }
+    }
+
+    return false;
+}
