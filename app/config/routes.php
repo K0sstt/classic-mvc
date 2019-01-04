@@ -6,8 +6,8 @@ return [
 		'action' => 'index',
 	],
 	'import' => [
-		'controller' => 'main',
-		'action' => 'import',
+		'controller' => 'import',
+		'action' => 'index',
 	],
 	'updatedata' => [
 		'controller' => 'main',

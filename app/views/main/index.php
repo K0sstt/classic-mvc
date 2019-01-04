@@ -11,11 +11,42 @@
 	<div class="col-8"></div>
 </div>
 
+<div class="row">
+	<?php foreach($vars as $film): ?>
+		<div class="col-3">
+			<div id="<?php echo $film['id']; ?>" class="card text-center">
+				<div class="card-body">
+					<h5 class="card-title"><?php echo $film['title']; ?></h5>
+					<p class="card-text"><?php echo $film['format']; ?></p>
+					<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-<?php echo $film['id'] ?>">
+						More
+					</button>
+				</div>
+			</div>
 
-<div id= class="card text-center" style="width: 18rem;">
-	<div class="card-body">
-		<h5 class="card-title">Special title treatment</h5>
-		<p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-		<a href="#" class="btn btn-primary">More</a>
-	</div>
+			<div class="modal fade" id="modal-<?php echo $film['id'] ?>" tabindex="-1" role="dialog" aria-labelledby="modal-<?php echo $film['id'] ?>Label" aria-hidden="true">
+				<div class="modal-dialog" role="document">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h5 class="modal-title" id="modal-<?php echo $film['id'] ?>Label">Modal title</h5>
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>
+						</div>
+						<div class="modal-body">
+							...
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+							<button type="button" class="btn btn-primary">Save changes</button>
+						</div>
+					</div>
+				</div>
+			</div>
+
+		</div>
+
+		
+
+	<?php endforeach; ?>
 </div>

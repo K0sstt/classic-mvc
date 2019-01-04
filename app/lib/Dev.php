@@ -23,6 +23,5 @@ function in_array_multi($needle, $haystack, $strict = false) {
             return true;
         }
     }
-
     return false;
 }
